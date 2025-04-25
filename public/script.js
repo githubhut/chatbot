@@ -57,7 +57,7 @@ function formatDate(timestamp) {
 // Load all conversations for the sidebar
 async function loadAllConversations() {
     try {
-        const response = await fetchWithAuth("http://localhost:8000/conversations");
+        const response = await fetchWithAuth("https://chatbot-jl8o.onrender.com/conversations");
         if (!response.ok) throw new Error("Failed to load conversations");
         
         const conversations = await response.json();
@@ -106,7 +106,7 @@ function renderConversationList(conversations) {
 async function loadConversationHistory() {
     try {
         showLoadingIndicator();
-        const response = await fetchWithAuth(`http://localhost:8000/conversation/${currentConversationId}`);
+        const response = await fetchWithAuth(`https://chatbot-jl8o.onrender.com/conversation/${currentConversationId}`);
         
         if (!response.ok) throw new Error("Failed to load history");
         
@@ -219,7 +219,7 @@ async function sendMessage(event) {
     chatBox.scrollTop = chatBox.scrollHeight;
     
     try {
-        const response = await fetchWithAuth("http://localhost:8000/", {
+        const response = await fetchWithAuth("https://chatbot-jl8o.onrender.com/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ 
