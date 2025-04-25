@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Chatbot</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">            
+            <button id="new-chat-btn" class="sidebar-btn">
+                <i class="fas fa-plus-circle"></i> New chat
+            </button>
+            <div class="conversations-container">
+                <div class="conversation-list" id="conversation-list">
+                    <!-- Conversations will render here -->
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="dropdown">
+                    <button id="languageBtn" class="sidebar-btn">
+                        <i class="fas fa-globe"></i> Language
+                    </button>
+                    <div id="languageDropdown" class="dropdown-content">
+                        <button onclick="setLanguage('en-US', 'English')"><i class="fas fa-language"></i> English</button>
+                        <button onclick="setLanguage('es-ES', 'Spanish')"><i class="fas fa-language"></i> Spanish</button>
+                        <button onclick="setLanguage('fr-FR', 'French')"><i class="fas fa-language"></i> French</button>
+                        <button onclick="setLanguage('de-DE', 'German')"><i class="fas fa-language"></i> German</button>
+                        <button onclick="setLanguage('ja-JP', 'Japanese')"><i class="fas fa-language"></i> Japanese</button>
+                        <button onclick="setLanguage('zh-CN', 'Chinese')"><i class="fas fa-language"></i> Chinese</button>
+                        <button onclick="setLanguage('ru-RU', 'Russian')"><i class="fas fa-language"></i> Russian</button>
+                        <button onclick="setLanguage('hi-IN', 'Hindi')"><i class="fas fa-language"></i> Hindi</button>
+                        <button onclick="setLanguage('it-IT', 'Italian')"><i class="fas fa-language"></i> Italian</button>
+                        <button onclick="setLanguage('pt-PT', 'Portuguese')"><i class="fas fa-language"></i> Portuguese</button>
+                        <button onclick="setLanguage('ko-KR', 'Korean')"><i class="fas fa-language"></i> Korean</button>
+                        <button onclick="setLanguage('ar-SA', 'Arabic')"><i class="fas fa-language"></i> Arabic</button>
+                    </div>
+                </div>
+                <button id="logoutBtn" class="logout-btn" title="Logout"> Logout
+                    <i class="fas fa-sign-out-alt"></i> 
+                </button>
+                <button id="toggleDarkMode" class="sidebar-btn">
+                    <i class="fas fa-moon"></i> Dark mode
+                </button>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
+        <!-- Main Chat Area -->
+        <div class="main-content">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <h2 id="conversation-title">New Conversation</h2>
+                </div>
+                <div class="chat-box" id="chat-box">
+                    <!-- Messages will appear here -->
+                </div>
+                <form class="input-box" onsubmit="sendMessage(event)">
+                    <button type="button" id="stopBtn" class="icon-btn" title="Stop">
+                        <i class="fas fa-stop"></i>
+                    </button>
+                    <input type="text" id="message" placeholder="Type a message..." required>
+                    <button type="button" id="startBtn" class="icon-btn" title="Voice Input">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button type="submit" class="icon-btn" title="Send">
+                        <i class="fas fa-paper-plane" style="color: #007BFF; margin-right: 10px;"></i>
+                    </button>
+                    <i class="fas fa-volume-up"></i>
+                    <div class="chat-controls">
+                        <div class="speech-rate-control">
+                            <button id="rateDownBtn" title="Slower speech">
+                            </button>
+                            <input type="range" id="speechRate" min="0.5" max="2" step="0.1" value="1">
+                            <button id="rateUpBtn" title="Faster speech">
+                            </button>
+                            <span id="rateValue">1x</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
