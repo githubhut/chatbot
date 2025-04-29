@@ -102,7 +102,12 @@ if (loginForm) {
                 localStorage.setItem('userId', data.userId);
                 window.location.href = 'index.html';
             } else {
-                showError(data.error || 'Login failed');
+                if (data.errors) {
+                    const messages = data.errors.map(err => err.msg).join(', ');
+                    showError(messages);
+                } else {
+                    showError(data.error || 'Login failed');
+                }
             }
         } catch (error) {
             showError('Error logging in: ' + error.message);
@@ -137,7 +142,12 @@ if (registerForm) {
                     window.location.href = 'login.html';
                 }, 1500);
             } else {
-                showError(data.error || 'Registration failed');
+                if (data.errors) {
+                    const messages = data.errors.map(err => err.msg).join('<br> ');
+                    showError(messages);
+                } else {
+                    showError(data.error || 'Registration failed');
+                }
             }
         } catch (error) {
             showError('Error registering: ' + error.message);
@@ -149,7 +159,7 @@ if (registerForm) {
 function showError(message) {
     const errorElement = document.createElement('div');
     errorElement.className = 'auth-message error';
-    errorElement.textContent = message;
+    errorElement.innerHTML = message;
     
     const card = document.querySelector('.auth-card');
     const firstChild = card.firstChild;
@@ -163,7 +173,7 @@ function showError(message) {
 function showSuccess(message) {
     const successElement = document.createElement('div');
     successElement.className = 'auth-message success';
-    successElement.textContent = message;
+    successElement.innerHTML = message;
     
     const card = document.querySelector('.auth-card');
     const firstChild = card.firstChild;
